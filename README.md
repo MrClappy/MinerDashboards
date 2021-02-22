@@ -40,3 +40,5 @@ curl -i -XPOST 'http://localhost:8086/write?db=power' --data-binary "power value
 ```
 
 19. Added graph: SELECT "value"  / 1000 FROM "power" WHERE $timeFilter
+
+Look into https://www.getmonero.org/resources/developer-guides/wallet-rpc.html

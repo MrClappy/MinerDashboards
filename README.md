@@ -30,12 +30,13 @@ curl -i -XPOST 'http://localhost:8086/write?db=rigs' --data-binary "xmrigs,rig=$
 15. Setup API key with CoinMarketCap to get XMR values
 16. Added graph: SELECT last("value") FROM "price" WHERE $timeFilter
 17. Added graph: SELECT distinct("value") FROM "price" WHERE $timeFilter GROUP BY time($__interval)
-
-Wemo might use SOAP: http://192.168.1.18:49153 is open.
-
-Fourth from the last parameter is currentPowerConsumption in milliwatts (cut -d'|' -f8)
+18. Created '/root/WEMO.sh' to pull Insight plug wattage
 
 ```bash
-curl -H 'Content-type:text/xml;  charset=utf-8' -H 'SOAPACTION:"urn:Belkin:service:insight:1#GetInsightParams"' -d '<?xml version="1.0" encoding="utf-8"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body><u:GetInsightParams xmlns:u="urn:Belkin:service:insight:1"></u:GetInsightParams></s:Body></s:Envelope>' 'http://192.168.1.18:49153/upnp/control/insight1'
+#!/bin/bash
+json=$(curl -H 'Content-type:text/xml;  charset=utf-8' -H 'SOAPACTION:"urn:Belkin:service:insight:1#GetInsightParams"' -d '<?xml version="1.0" encoding="utf-8"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"s:encodingStyle="htt>
+power=$(echo $json | cut -d'|' -f8)
+curl -i -XPOST 'http://localhost:8086/write?db=power' --data-binary "power value=$power"
 ```
 
+19. Added graph: SELECT "value"  / 1000 FROM "power" WHERE $timeFilter

@@ -33,8 +33,9 @@ curl -i -XPOST 'http://localhost:8086/write?db=rigs' --data-binary "xmrigs,rig=$
 
 Wemo might use SOAP: http://192.168.1.18:49153 is open.
 
-Fourth from the last parameter is currentPowerConsumption in milliwatts:
+Fourth from the last parameter is currentPowerConsumption in milliwatts (cut -d'|' -f8)
 
 ```bash
 curl -H 'Content-type:text/xml;  charset=utf-8' -H 'SOAPACTION:"urn:Belkin:service:insight:1#GetInsightParams"' -d '<?xml version="1.0" encoding="utf-8"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body><u:GetInsightParams xmlns:u="urn:Belkin:service:insight:1"></u:GetInsightParams></s:Body></s:Envelope>' 'http://192.168.1.18:49153/upnp/control/insight1'
 ```
+

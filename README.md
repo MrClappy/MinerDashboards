@@ -27,3 +27,8 @@ curl -i -XPOST 'http://localhost:8086/write?db=rigs' --data-binary "xmrigs,rig=$
 12. Added graph: SELECT moving_average("temperature", 10) FROM "coretemp_cpu" WHERE ("host" = 'PAC') AND $timeFilter
 13. Added graph: SELECT distinct("value")  / 1000 FROM "xmrigs" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 14. Added graph: SELECT last("uptime")  / 3600 FROM "xmrigs" WHERE ("rig" = 'PAC') AND $timeFilter
+15. Setup API key with CoinMarketCap to get XMR values
+16. Added graph: SELECT last("value") FROM "price" WHERE $timeFilter
+17. Added graph: SELECT distinct("value") FROM "price" WHERE $timeFilter GROUP BY time($__interval)
+
+Wemo might use SOAP: http://192.168.1.18:49153 is open

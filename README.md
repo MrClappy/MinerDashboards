@@ -5,7 +5,7 @@
 3. Installed InfluxDB created 'rigs' db
 4. Created '/root/PAC.sh' to pull data & dump to InfluxDB
 
-```bash 
+```shell
 #!/bin/bash
 #collect data from API
 json=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer token" http://192.168.1.154:9999/1/summary)
@@ -32,7 +32,7 @@ curl -i -XPOST 'http://localhost:8086/write?db=rigs' --data-binary "xmrigs,rig=$
 17. Added graph: SELECT distinct("value") FROM "price" WHERE $timeFilter GROUP BY time($__interval)
 18. Created '/root/WEMO.sh' to pull Insight plug wattage
 
-```bash
+```shell
 #!/bin/bash
 json=$(curl -H 'Content-type:text/xml;  charset=utf-8' -H 'SOAPACTION:"urn:Belkin:service:insight:1#GetInsightParams"' -d '<?xml version="1.0" encoding="utf-8"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"s:encodingStyle="htt>
 power=$(echo $json | cut -d'|' -f8)

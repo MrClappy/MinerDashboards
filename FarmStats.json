@@ -27,6 +27,7 @@
           },
           "custom": {},
           "mappings": [],
+          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -79,7 +80,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "hashrate",
+          "measurement": "statistics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -88,7 +89,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "hashrate"
                 ],
                 "type": "field"
               },
@@ -116,6 +117,7 @@
           "mappings": [],
           "max": 100,
           "min": 30,
+          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -217,6 +219,7 @@
           "mappings": [],
           "max": 100,
           "min": 30,
+          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -314,6 +317,7 @@
           },
           "custom": {},
           "mappings": [],
+          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -433,7 +437,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^currency$/",
+          "fields": "/^algo$/",
           "values": false
         },
         "text": {},
@@ -470,7 +474,7 @@
           ]
         }
       ],
-      "title": "PAC - Current Algo",
+      "title": "PAC Algo",
       "type": "stat"
     },
     {
@@ -515,7 +519,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^currency$/",
+          "fields": "/^algo$/",
           "values": false
         },
         "text": {},
@@ -551,7 +555,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "BIG - Current Algo",
+      "title": "BIG Algo",
       "type": "stat"
     },
     {
@@ -615,7 +619,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "uptime",
+          "measurement": "statistics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -624,7 +628,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "uptime"
                 ],
                 "type": "field"
               },
@@ -637,7 +641,7 @@
           "tags": []
         }
       ],
-      "title": "Farm Uptime",
+      "title": "Proxy Uptime",
       "type": "stat"
     },
     {
@@ -687,7 +691,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 10,
         "w": 12,
         "x": 0,
         "y": 10
@@ -704,7 +708,7 @@
           "mode": "single"
         }
       },
-      "pluginVersion": "7.4.2",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "groupBy": [
@@ -721,7 +725,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "hashrate",
+          "measurement": "statistics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -730,13 +734,13 @@
             [
               {
                 "params": [
-                  "value"
+                  "hashrate"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               }
             ]
           ],
@@ -793,7 +797,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 10,
         "w": 12,
         "x": 12,
         "y": 10
@@ -830,7 +834,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "hashrate"
                 ],
                 "type": "field"
               },
@@ -869,10 +873,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 4,
         "w": 5,
         "x": 0,
-        "y": 19
+        "y": 20
       },
       "id": 22,
       "options": {
@@ -979,10 +983,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 8,
         "w": 14,
         "x": 5,
-        "y": 19
+        "y": 20
       },
       "id": 26,
       "options": {
@@ -1039,6 +1043,75 @@
       "type": "timeseries"
     },
     {
+      "datasource": "MO Stats",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 19,
+        "y": 20
+      },
+      "id": 32,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "statistics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "payment"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Last Payout",
+      "type": "stat"
+    },
+    {
       "datasource": "XMR Price",
       "fieldConfig": {
         "defaults": {
@@ -1061,15 +1134,16 @@
                 "value": 0
               }
             ]
-          }
+          },
+          "unit": "none"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 4,
         "w": 5,
-        "x": 19,
-        "y": 19
+        "x": 0,
+        "y": 24
       },
       "id": 24,
       "options": {
@@ -1145,5 +1219,5 @@
   "timezone": "",
   "title": "Farm Stats",
   "uid": "1TEj5DsGk",
-  "version": 53
+  "version": 68
 }

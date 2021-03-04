@@ -87,15 +87,15 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value
 19. Installed Grafana on Ubuntu VM
 20. Added queries:
 
-_Get Hash Rate: (proxy) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-Get CPU Temp: (telegraf) SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
-Get Current Algo: (rigs) SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter
-Get Farm Wattage: (power) SELECT last("value") FROM "power" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-Get Proxy Uptime: (proxy) SELECT last("uptime") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-Get Pool Hash Rate: (mo) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-Get Current XMR Price: (xmrprice) SELECT mean("value") FROM "price" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-Get Day Price Change: (xmrprice) SELECT mean("change") FROM "price" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-Get Last Payment: (mo) SELECT mean("payment") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)_
+- Get Hash Rate: (proxy) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+- Get CPU Temp: (telegraf) SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
+- Get Current Algo: (rigs) SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter
+- Get Farm Wattage: (power) SELECT last("value") FROM "power" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+- Get Proxy Uptime: (proxy) SELECT last("uptime") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+- Get Pool Hash Rate: (mo) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+- Get Current XMR Price: (xmrprice) SELECT mean("value") FROM "price" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+- Get Day Price Change: (xmrprice) SELECT mean("change") FROM "price" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+- Get Last Payment: (mo) SELECT mean("payment") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 
 References:
 

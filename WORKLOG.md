@@ -99,10 +99,10 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value
 
 References:
 
-MoneroOcean API: https://github.com/MoneroOcean/nodejs-pool/blob/master/lib/api.js
-CoinMarketCap API: https://coinmarketcap.com/api/documentation/v1/
-Telegraf Windows Service: https://docs.influxdata.com/telegraf/v1.17/administration/windows_service/
-CoreTempTelegraf: https://tomk.xyz/k/coretemptelegraf
+- MoneroOcean API: https://github.com/MoneroOcean/nodejs-pool/blob/master/lib/api.js
+- CoinMarketCap API: https://coinmarketcap.com/api/documentation/v1/
+- Telegraf Windows Service: https://docs.influxdata.com/telegraf/v1.17/administration/windows_service/
+- CoreTempTelegraf: https://tomk.xyz/k/coretemptelegraf
 
 Future References:
 

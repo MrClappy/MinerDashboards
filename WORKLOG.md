@@ -97,13 +97,13 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value
 - Get Day Price Change: (xmrprice) SELECT mean("change") FROM "price" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Last Payment: (mo) SELECT mean("payment") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 
-References:
+## References:
 
 - MoneroOcean API: https://github.com/MoneroOcean/nodejs-pool/blob/master/lib/api.js
 - CoinMarketCap API: https://coinmarketcap.com/api/documentation/v1/
 - Telegraf Windows Service: https://docs.influxdata.com/telegraf/v1.17/administration/windows_service/
 - CoreTempTelegraf: https://tomk.xyz/k/coretemptelegraf
 
-Future References:
+## Future References:
 
 https://www.getmonero.org/resources/developer-guides/wallet-rpc.html

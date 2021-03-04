@@ -1,6 +1,6 @@
 #!/bin/bash
 
-json=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer token" http://192.168.1.6:9998/1/summary)
+json=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer token" http://<IP>:<PORT>/1/summary)
 
 hashrate=$(echo $json | jq -r '.hashrate.total[0]')
 workerid=$(echo $json | jq -r '.worker_id')

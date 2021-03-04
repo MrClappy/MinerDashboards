@@ -7,4 +7,4 @@ workerid=$(echo $json | jq -r '.worker_id')
 algo=$(echo $json | jq -r '.algo')
 uptime=$(echo $json | jq -r '.uptime')
 
-curl -i -XPOST 'http://localhost:8086/write?db=rigs' --data-binary "xmrigs,rig=$workerid,algo=$algo uptime=$uptime,hashrate=$hashrate"
+curl -i -XPOST 'http://<IP>:<PORT>/write?db=rigs' --data-binary "xmrigs,rig=$workerid,algo=$algo uptime=$uptime,hashrate=$hashrate"

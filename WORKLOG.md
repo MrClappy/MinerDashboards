@@ -2,7 +2,7 @@
 
 1. Enabled XMRig HTTP API on miners and proxy
 3. Installed Ubuntu 20.04 on Hyper-V (1.155)
-4. Installed InfluxDB created DBs: rigs, telegraf, xmrprice, power, proxy, mo
+4. Installed InfluxDB & created databases: rigs, telegraf, xmrprice, power, proxy, mo
 5. Created bash to pull data from XMRig API & dump to InfluxDB (rigs)
 
 ```shell

@@ -10,4 +10,4 @@ timediff=(`expr $now - $lastpayment`)
 
 hashRate=$(echo $json | jq '.pool_statistics.hashRate')
 
-curl -i -XPOST 'http://localhost:8086/write?db=mo' --data-binary "statistics,rig=MO hashrate=$hashRate,payment=$timediff"
+curl -i -XPOST 'http://<IP>:<PORT>/write?db=mo' --data-binary "statistics,rig=MO hashrate=$hashRate,payment=$timediff"

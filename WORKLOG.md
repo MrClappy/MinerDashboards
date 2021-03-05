@@ -83,6 +83,15 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value
 14. Enabled global shared memory on CoreTemp on miners
 15. Configured CoreTemp to run on start on miners
 17. Configured Telegraf to dump to InfluxDB (telegraf)
+
+```
+  [[inputs.exec]]
+    commands = [
+	  'powershell -Command "C:\CoreTempTelegraf"'
+	]
+    data_format = "influx"
+```
+
 18. Configured Telegraf as Windows service on miners
 19. Installed Grafana on Ubuntu VM
 20. Added queries:

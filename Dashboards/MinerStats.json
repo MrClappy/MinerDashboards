@@ -1,4 +1,3 @@
-
 {
   "annotations": {
     "list": [
@@ -915,24 +914,36 @@
       "type": "gauge"
     },
     {
-      "datasource": null,
+      "datasource": "Telegraf",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "custom": {},
+          "decimals": 0,
           "mappings": [],
+          "max": 100,
+          "min": 30,
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
                 "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 85
+              },
+              {
+                "color": "red",
+                "value": 95
               }
             ]
           },
-          "unit": "s"
+          "unit": "celsius"
         },
         "overrides": []
       },
@@ -942,12 +953,8 @@
         "x": 12,
         "y": 12
       },
-      "id": 46,
+      "id": 47,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -955,8 +962,9 @@
           "fields": "",
           "values": false
         },
-        "text": {},
-        "textMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
       },
       "pluginVersion": "7.4.3",
       "targets": [
@@ -975,7 +983,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "xmrigs",
+          "measurement": "coretemp_cpu",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -984,27 +992,27 @@
             [
               {
                 "params": [
-                  "uptime"
+                  "temperature"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               }
             ]
           ],
           "tags": [
             {
-              "key": "rig",
+              "key": "host",
               "operator": "=",
               "value": "JID"
             }
           ]
         }
       ],
-      "title": "JID Uptime",
-      "type": "stat"
+      "title": "JID Temp",
+      "type": "gauge"
     },
     {
       "datasource": "Proxy Stats",
@@ -1276,6 +1284,98 @@
       ],
       "title": "BIG Uptime",
       "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 18
+      },
+      "id": 46,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "xmrigs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "uptime"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "rig",
+              "operator": "=",
+              "value": "JID"
+            }
+          ]
+        }
+      ],
+      "title": "JID Uptime",
+      "type": "stat"
     }
   ],
   "refresh": "5s",
@@ -1293,5 +1393,5 @@
   "timezone": "",
   "title": "Miner Stats",
   "uid": "KGyeFBsGk",
-  "version": 17
+  "version": 18
 }

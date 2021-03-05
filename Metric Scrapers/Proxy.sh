@@ -1,7 +1,7 @@
 #!/bin/bash
 
 getproxy=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer token" http://<IP>:<PORT>/1/summary)
-gethash=$(curl https://api.moneroocean.stream/miner/<WALLET_ID>/chart/hashrate)
+gethash=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/chart/hashrate)
 
 hashrate=$(echo $gethash | jq '.[0].hs2')
 miners=$(echo $getproxy | jq -r '.miners.now')

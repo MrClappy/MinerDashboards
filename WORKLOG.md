@@ -143,6 +143,7 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=
 
 - MoneroOcean API: https://github.com/MoneroOcean/nodejs-pool/blob/master/lib/api.js
 - CoinMarketCap API: https://coinmarketcap.com/api/documentation/v1/
+- Wemo Insight SOAP: https://github.com/tigoe/WeMoExamples
 - Telegraf Windows Service: https://docs.influxdata.com/telegraf/v1.17/administration/windows_service/
 - CoreTempTelegraf: https://tomk.xyz/k/coretemptelegraf
 - Monero Wallet RPC: https://www.getmonero.org/resources/developer-guides/wallet-rpc.html

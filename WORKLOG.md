@@ -1,9 +1,31 @@
 # Dashboard Work Log
 
+## Metric Logging
+
 1. Enabled XMRig HTTP API on miners and proxy
-3. Installed Ubuntu 20.04 on Hyper-V (1.155)
-4. Installed InfluxDB & created databases: rigs, telegraf, xmrprice, power, proxy, mo, balance
-5. Created bash to pull data from XMRig API & dump to InfluxDB (rigs)
+2. Installed Telegraf on miners
+3. Installed CoreTemp on miners
+4. Installed CoreTempTelegraf on miners
+5. Enabled global shared memory & run on startup on CoreTemp on miners
+7. Configured Telegraf to dump to InfluxDB (telegraf)
+
+```
+[[inputs.exec]]
+   commands = [
+      'powershell -Command "C:\CoreTempTelegraf"'
+   ]
+   data_format = "influx"
+```
+
+8. Configured Telegraf as Windows service on miners
+9. Created Scheduled Task to run Monero Wallet RPC Server on Startup:
+
+```
+monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemon-address <IP>:<PORT> --password <PASSWORD> --rpc-bind-ip 0.0.0.0 --confirm-external-bind --disable-rpc-login
+```
+## Metric Scraping
+
+1. Created bash to pull data from XMRig API & dump to InfluxDB (rigs)
 
 ```shell
 #!/bin/bash
@@ -17,7 +39,8 @@ uptime=$(echo $json | jq -r '.uptime')
 
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=rigs' --data-binary "xmrigs,rig=$workerid,algo=$algo uptime=$uptime,hashrate=$hashrate"
 ```
-6. Created bash to pull data from proxy API / pool API & dump to InfluxDB (proxy)
+
+2. Created bash to pull data from proxy API / pool API & dump to InfluxDB (proxy)
 
 ```shell
 #!/bin/bash
@@ -32,7 +55,7 @@ uptime=$(echo $getproxy | jq -r '.uptime')
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=proxy' --data-binary "statistics hashrate=$hashrate,minercount=$miners,uptime=$uptime"
 ```
 
-7. Created bash to pull data from pool API & dump to InfluxDB (mo)
+3. Created bash to pull data from pool API & dump to InfluxDB (mo)
 
 ```shell
 #!/bin/bash
@@ -58,8 +81,7 @@ fi
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=mo' --data-binary "statistics,rig=MO hashrate=$hashRate,payment=$timediff,due=$amtdue"
 ```
 
-8. Created bash to pull data from Wemo & dump to InfluxDB (power)
-
+4. Created bash to pull data from Wemo & dump to InfluxDB (power)
 
 ```shell
 #!/bin/bash
@@ -71,7 +93,7 @@ power=$(echo $json | cut -d'|' -f8)
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=power' --data-binary "power value=$power"
 ```
 
-9. Created bash to pull data from CoinMarketCap API & dump to InfluxDB (xmrprice)
+5. Created bash to pull data from CoinMarketCap API & dump to InfluxDB (xmrprice)
 
 ```shell
 #!/bin/bash
@@ -84,7 +106,7 @@ change=$(echo $json | jq '.data.XMR.quote.USD.percent_change_24h')
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value=$price,change=$change"
 ```
 
-10. Created bash to pull data from Monero Wallet RPC server (balance)
+6. Created bash to pull data from Monero Wallet RPC server (balance)
 
 ```shell
 #!/bin/bash
@@ -97,31 +119,14 @@ balance=$(echo "$gotbalance * 0.000000000001" | bc)
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=Wallet balance=$balance"
 ```
 
-11. Created cron jobs to run each bash script every minute
-12. Installed Telegraf on miners
-13. Installed CoreTempTelegraf on miners
-14. Installed CoreTemp on miners
-15. Enabled global shared memory on CoreTemp on miners
-16. Configured CoreTemp to run on start on miners
-17. Configured Telegraf to dump to InfluxDB (telegraf)
+## Database & Dashboards
 
-```
-  [[inputs.exec]]
-    commands = [
-	  'powershell -Command "C:\CoreTempTelegraf"'
-	]
-    data_format = "influx"
-```
-
-18. Configured Telegraf as Windows service on miners
-19. Created Scheduled Task to run Monero Wallet RPC Server on Startup:
-
-```
-monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemon-address <IP>:<PORT> --password <PASSWORD> --rpc-bind-ip 0.0.0.0 --confirm-external-bind --disable-rpc-login
-```
-
-20. Installed Grafana on Ubuntu VM
-21. Added queries to Grafana Dashboard:
+1. Installed Ubuntu 20.04 on Hyper-V (1.155)
+2. Installed InfluxDB & created databases: rigs, telegraf, xmrprice, power, proxy, mo, balance
+3. Created cron jobs to run each bash script every minute
+4. Installed Grafana on Ubuntu VM
+5. Added databases as InfluxDB Input Sources: rigs, telegraf, xmrprice, power, proxy, mo, balance
+6. Added queries to Grafana Dashboard:
 
 - Get Hash Rate: (proxy) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get CPU Temp: (telegraf) SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter

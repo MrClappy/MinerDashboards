@@ -2,7 +2,7 @@
 
 1. Enabled XMRig HTTP API on miners and proxy
 3. Installed Ubuntu 20.04 on Hyper-V (1.155)
-4. Installed InfluxDB & created databases: rigs, telegraf, xmrprice, power, proxy, mo
+4. Installed InfluxDB & created databases: rigs, telegraf, xmrprice, power, proxy, mo, balance
 5. Created bash to pull data from XMRig API & dump to InfluxDB (rigs)
 
 ```shell
@@ -37,17 +37,25 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=proxy' --data-binary "statistics has
 ```shell
 #!/bin/bash
 
-json=$(curl -X GET -H "Content-Type: application/json" https://api.moneroocean.stream/pool/stats)
+gethashrate=$(curl https://api.moneroocean.stream/pool/stats)
+getpayments=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/payments)
+getdue=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/stats)
 
-getpayments=$(curl https://api.moneroocean.stream/miner/<WALLET_ID>/payments)
-
+hashRate=$(echo $gethashrate | jq '.pool_statistics.hashRate')
 lastpayment=$(echo $getpayments | jq '.[0].ts')
+
 now=$(date +%s)
 timediff=(`expr $now - $lastpayment`)
+gotdue=$(echo $getdue | jq '.amtDue')
 
-hashRate=$(echo $json | jq '.pool_statistics.hashRate')
+adj=0.0
+adj2=0.00
 
-curl -i -XPOST 'http://<IP>:<PORT>/write?db=mo' --data-binary "statistics,rig=MO hashrate=$hashRate,payment=$timediff"
+if [ ${#gotdue} -eq 11 ]; then amtdue=$(echo $adj$gotdue)
+else amtdue=$(echo $adj2$gotdue)
+fi
+
+curl -i -XPOST 'http://<IP>:<PORT>/write?db=mo' --data-binary "statistics,rig=MO hashrate=$hashRate,payment=$timediff,due=$amtdue"
 ```
 
 8. Created bash to pull data from Wemo & dump to InfluxDB (power)
@@ -76,12 +84,25 @@ change=$(echo $json | jq '.data.XMR.quote.USD.percent_change_24h')
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value=$price,change=$change"
 ```
 
-10. Created cron jobs to run each bash script every minute
-11. Installed Telegraf on miners
-12. Installed CoreTempTelegraf on miners
-13. Installed CoreTemp on miners
-14. Enabled global shared memory on CoreTemp on miners
-15. Configured CoreTemp to run on start on miners
+10. Created bash to pull data from Monero Wallet RPC server (balance)
+
+```shell
+#!/bin/bash
+
+getbalance=$(curl http://<IP>:<PORT>/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_balance","params":{"account_index":0,"address_indices":[0,1]}}' -H 'Content-Type: application/json')
+
+gotbalance=$(echo $getbalance | jq -r '.result.balance')
+balance=$(echo "$gotbalance * 0.000000000001" | bc)
+
+curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=Wallet balance=$balance"
+```
+
+11. Created cron jobs to run each bash script every minute
+12. Installed Telegraf on miners
+13. Installed CoreTempTelegraf on miners
+14. Installed CoreTemp on miners
+15. Enabled global shared memory on CoreTemp on miners
+16. Configured CoreTemp to run on start on miners
 17. Configured Telegraf to dump to InfluxDB (telegraf)
 
 ```
@@ -93,8 +114,14 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value
 ```
 
 18. Configured Telegraf as Windows service on miners
-19. Installed Grafana on Ubuntu VM
-20. Added queries:
+19. Created Scheduled Task to run Monero Wallet RPC Server on Startup:
+
+```
+monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemon-address <IP>:<PORT> --password <PASSWORD> --rpc-bind-ip 0.0.0.0 --confirm-external-bind --disable-rpc-login
+```
+
+20. Installed Grafana on Ubuntu VM
+21. Added queries to Grafana Dashboard:
 
 - Get Hash Rate: (proxy) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get CPU Temp: (telegraf) SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
@@ -105,6 +132,8 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value
 - Get Current XMR Price: (xmrprice) SELECT mean("value") FROM "price" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Day Price Change: (xmrprice) SELECT mean("change") FROM "price" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Last Payment: (mo) SELECT mean("payment") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+- Get Currently Due: (mo) SELECT last("due") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+- Get Wallet Balance: (balance) SELECT last("balance") FROM "balance" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 
 ## References:
 
@@ -112,7 +141,4 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=xmrprice' --data-binary "price value
 - CoinMarketCap API: https://coinmarketcap.com/api/documentation/v1/
 - Telegraf Windows Service: https://docs.influxdata.com/telegraf/v1.17/administration/windows_service/
 - CoreTempTelegraf: https://tomk.xyz/k/coretemptelegraf
-
-## Future References:
-
-https://www.getmonero.org/resources/developer-guides/wallet-rpc.html
+- Monero Wallet RPC: https://www.getmonero.org/resources/developer-guides/wallet-rpc.html

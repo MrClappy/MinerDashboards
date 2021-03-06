@@ -119,7 +119,7 @@ balance=$(echo "$gotbalance * 0.000000000001" | bc)
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=Wallet balance=$balance"
 ```
 
-## Database & Dashboards
+## Databases & Dashboards
 
 1. Installed Ubuntu 20.04 on Hyper-V
 2. Created cron jobs to run each bash script every minute

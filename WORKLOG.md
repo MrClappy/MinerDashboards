@@ -30,7 +30,7 @@ monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemo
 ```shell
 #!/bin/bash
 
-getstatistics=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer token" http://<IP>:<PORT>/1/summary)
+getstatistics=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer <TOKEN>" http://<IP>:<PORT>/1/summary)
 
 hashrate=$(echo $getstatistics | jq -r '.hashrate.total[0]')
 workerid=$(echo $getstatistics | jq -r '.worker_id')
@@ -45,7 +45,7 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=rigs' --data-binary "xmrigs,rig=$wor
 ```shell
 #!/bin/bash
 
-getproxy=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer token" http://<IP>:<PORT>/1/summary)
+getproxy=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer <TOKEN>" http://<IP>:<PORT>/1/summary)
 gethashrate=$(curl https://api.moneroocean.stream/miner/<WALLET_ID>/chart/hashrate)
 
 hashrate=$(echo $gethashrate | jq '.[0].hs2')
@@ -60,9 +60,9 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=proxy' --data-binary "statistics has
 ```shell
 #!/bin/bash
 
-gethashrate=$(curl https://api.moneroocean.stream/pool/stats)
-getpayments=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/payments)
-getdue=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/stats)
+gethashrate=$(curl -X GET -H "Content-Type: application/json" https://api.moneroocean.stream/pool/stats)
+getpayments=$(curl -X GET -H "Content-Type: application/json" https://api.moneroocean.stream/miner/<ADDRESS>/payments)
+getdue=$(curl -X GET -H "Content-Type: application/json" https://api.moneroocean.stream/miner/<ADDRESS>/stats)
 
 hashrate=$(echo $gethashrate | jq '.pool_statistics.hashRate')
 lastpayment=$(echo $getpayments | jq '.[0].ts')

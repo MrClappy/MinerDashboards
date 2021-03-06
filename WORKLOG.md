@@ -147,3 +147,10 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=
 - Telegraf Windows Service: https://docs.influxdata.com/telegraf/v1.17/administration/windows_service/
 - CoreTempTelegraf: https://tomk.xyz/k/coretemptelegraf
 - Monero Wallet RPC: https://www.getmonero.org/resources/developer-guides/wallet-rpc.html
+
+
+## Donations
+
+If you find this information helpful, donations are greatly appreciated!
+
+XMR: 47zEuqnGse6LBQMF9hnRGxGn7bLgJQXzZThjqFMFsqb152PVmiPP5eXfK7vNPpQTX5W5BmAqqu6DeVdUrT7nG5NyMNxvMr2

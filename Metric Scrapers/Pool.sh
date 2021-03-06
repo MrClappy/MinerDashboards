@@ -13,7 +13,7 @@ gotdue=$(echo $getdue | jq '.amtDue')
 adj=0.0
 adj2=0.00
 
-if [ ${#lastpayment} -eq 11 ]; then amtdue=$(echo $adj$gotdue)
+if [ ${#gotdue} -eq 11 ]; then amtdue=$(echo $adj$gotdue)
 else amtdue=$(echo $adj2$gotdue)
 fi
 

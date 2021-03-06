@@ -121,12 +121,11 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=
 
 ## Database & Dashboards
 
-1. Installed Ubuntu 20.04 on Hyper-V (1.155)
-2. Installed InfluxDB & created databases: rigs, telegraf, xmrprice, power, proxy, mo, balance
-3. Created cron jobs to run each bash script every minute
-4. Installed Grafana on Ubuntu VM
-5. Added databases as InfluxDB Input Sources: rigs, telegraf, xmrprice, power, proxy, mo, balance
-6. Added queries to Grafana Dashboard:
+1. Installed Ubuntu 20.04 on Hyper-V
+2. Created cron jobs to run each bash script every minute
+3. Installed InfluxDB & created databases: rigs, telegraf, xmrprice, power, proxy, mo, balance
+4. Installed Grafana & added databases as InfluxDB Input Sources: rigs, telegraf, xmrprice, power, proxy, mo, balance
+5. Added queries to Grafana Dashboard:
 
 - Get Hash Rate: (proxy) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get CPU Temp: (telegraf) SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
@@ -147,7 +146,6 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=
 - Telegraf Windows Service: https://docs.influxdata.com/telegraf/v1.17/administration/windows_service/
 - CoreTempTelegraf: https://tomk.xyz/k/coretemptelegraf
 - Monero Wallet RPC: https://www.getmonero.org/resources/developer-guides/wallet-rpc.html
-
 
 ## Donations
 

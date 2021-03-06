@@ -140,7 +140,7 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=
 - Get Currently Due: (mo) SELECT last("due") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Wallet Balance: (balance) SELECT last("balance") FROM "balance" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 
-## References:
+## References
 
 - MoneroOcean API: https://github.com/MoneroOcean/nodejs-pool/blob/master/lib/api.js
 - CoinMarketCap API: https://coinmarketcap.com/api/documentation/v1/

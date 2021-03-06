@@ -4,12 +4,17 @@ getstats=$(curl -X GET -H "Content-Type: application/json" https://api.monerooce
 getpayments=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/payments)
 getdue=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/stats)
 
+hashRate=$(echo $getstats | jq '.pool_statistics.hashRate')
 lastpayment=$(echo $getpayments | jq '.[0].ts')
 now=$(date +%s)
 timediff=(`expr $now - $lastpayment`)
 gotdue=$(echo $getdue | jq '.amtDue')
+
 adj=0.0
-amtdue=$(echo $adj$gotdue)
-hashRate=$(echo $getstats | jq '.pool_statistics.hashRate')
+adj2=0.00
+
+if [ ${#lastpayment} -eq 11 ]; then amtdue=$(echo $adj$gotdue)
+else amtdue=$(echo $adj2$gotdue)
+fi
 
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=mo' --data-binary "statistics,rig=MO hashrate=$hashRate,payment=$timediff,due=$amtdue"

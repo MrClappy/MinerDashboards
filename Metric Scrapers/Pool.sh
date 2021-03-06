@@ -1,11 +1,12 @@
 #!/bin/bash
 
-getstats=$(curl -X GET -H "Content-Type: application/json" https://api.moneroocean.stream/pool/stats)
+gethashrate=$(curl https://api.moneroocean.stream/pool/stats)
 getpayments=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/payments)
 getdue=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/stats)
 
-hashRate=$(echo $getstats | jq '.pool_statistics.hashRate')
+hashRate=$(echo $gethashrate | jq '.pool_statistics.hashRate')
 lastpayment=$(echo $getpayments | jq '.[0].ts')
+
 now=$(date +%s)
 timediff=(`expr $now - $lastpayment`)
 gotdue=$(echo $getdue | jq '.amtDue')

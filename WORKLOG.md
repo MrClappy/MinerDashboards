@@ -129,7 +129,7 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=
 
 - Get Hash Rate: (proxy) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get CPU Temp: (telegraf) SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
-- Get Current Algo: (rigs) SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter
+- Get Current Algo: (rigs) SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter (filter by Algo string column)
 - Get Farm Wattage: (power) SELECT last("value") FROM "power" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Proxy Uptime: (proxy) SELECT last("uptime") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Pool Hash Rate: (mo) SELECT mean("hashrate") FROM "statistics" WHERE $timeFilter GROUP BY time($__interval) fill(null)

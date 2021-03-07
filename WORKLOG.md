@@ -56,8 +56,8 @@
 
     In Core Temp GUI: 
     
-    Options > Settings > General (Enable Start Core Temp with Windows)
-    Options > Settings > Advanced (Enable SNMP)
+    - Options > Settings > General (Enable Start Core Temp with Windows)
+    - Options > Settings > Advanced (Enable SNMP)
 
 5. Install CoreTempTelegraf on miners.
 

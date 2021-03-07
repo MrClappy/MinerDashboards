@@ -7,7 +7,7 @@
 3. Installed CoreTemp on miners
 4. Installed CoreTempTelegraf on miners
 5. Enabled global shared memory & run on startup on CoreTemp on miners
-7. Configured Telegraf to dump to InfluxDB (telegraf)
+7. Configured Telegraf to dump CoreTemp values to InfluxDB (telegraf)
 
 ```
 [[inputs.exec]]

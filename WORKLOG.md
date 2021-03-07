@@ -243,7 +243,7 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "Wallet
     Note: The MoneroOcean API also provides a current XMR value metric without this request limit. CoinMarketCap is used in this case solely for additional 
     information such as % of change, etc.
 
-```
+```shell
 * * * * * /root/Scripts/MetricScrapers/Miner1Metrics.sh
 * * * * * /root/Scripts/MetricScrapers/Miner2Metrics.sh
 * * * * * /root/Scripts/MetricScrapers/ProxyMetrics.sh

@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-1. Scripts are written in Bash, a Linux host is required to scrape metrics
-2. CPU temperature metrics are only compatable on Windows miners
+1. Scripts are written in Bash, a Linux host is required to scrape metrics.
+2. CPU temperature metrics are only compatable on Windows miners.
 3. These instructions assume that miners, proxy, and InfluxDB are on the same network. Port forwarding is required otherwise.
 
 ## Database Setup

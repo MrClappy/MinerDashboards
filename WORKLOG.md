@@ -104,7 +104,7 @@ monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemo
 
 ## Metric Scraping
 
-    In each bash script, configure all variables within '< >' to reflect your settings.
+   In each bash script, configure all variables within '< >' to reflect your settings.
 
 1. Create a bash script for each miner to get metrics from the XMRig API and write to InfluxDB.
 
@@ -264,18 +264,18 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "Wallet
 
     Specific panel configurations are dependant on personal preference. The following are example queries:
 
-    - Get Total Hash Rate: SELECT mean("MinerHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-    - Get Pool Hash Rate: SELECT mean("PoolHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-    - Get Last Payment: SELECT mean("LastPayment") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-    - Get Amount Due: SELECT last("AmountDue") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-    - Get Miner Hash Rate: SELECT mean("HashRate") FROM "MinerMetrics" WHERE ("Miner" = '<MINER_ID>') AND $timeFilter
-    - Get CPU Temp: SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
-    - Get Current Algo: SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter (filter Algo column in panel options)
-    - Get Wattage: SELECT last("PowerDraw") FROM "PowerDraw" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-    - Get Proxy Uptime: SELECT last("UpTime") FROM "ProxyMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-    - Get Current XMR Value: SELECT mean("XMRValue) FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-    - Get Day % Value Change: SELECT mean("24hChange") FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-    - Get Wallet Balance: SELECT last("WalletBalance") FROM "WalletMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Total Hash Rate: SELECT mean("MinerHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Pool Hash Rate: SELECT mean("PoolHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Last Payment: SELECT mean("LastPayment") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Amount Due: SELECT last("AmountDue") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Miner Hash Rate: SELECT mean("HashRate") FROM "MinerMetrics" WHERE ("Miner" = '<MINER_ID>') AND $timeFilter
+ - Get CPU Temp: SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
+ - Get Current Algo: SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter (filter Algo column in panel options)
+ - Get Wattage: SELECT last("PowerDraw") FROM "PowerDraw" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Proxy Uptime: SELECT last("UpTime") FROM "ProxyMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Current XMR Value: SELECT mean("XMRValue) FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Day % Value Change: SELECT mean("24hChange") FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+ - Get Wallet Balance: SELECT last("WalletBalance") FROM "WalletMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 
 ## References
 

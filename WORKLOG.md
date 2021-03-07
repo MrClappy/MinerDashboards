@@ -55,6 +55,7 @@
 4. Enable global shared memory & run on startup in Core Temp on miners.
 
     In Core Temp GUI: 
+    
     Options > Settings > General (Enable Start Core Temp with Windows)
     Options > Settings > Advanced (Enable SNMP)
 

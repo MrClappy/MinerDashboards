@@ -41,6 +41,7 @@
         "access-token": "Min3r1T0k3n",
         "restricted": true
     }
+}
 ```
 
 2. Open the API port on the miner's firewall.

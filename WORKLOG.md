@@ -1,9 +1,15 @@
 # Dashboard Work Log
 
+## Prerequisites
+
+1. Scripts are written in Bash, a Linux host is required to scrape metrics
+2. CPU temperature metrics are only compatable on Windows miners
+3. These instructions assume that miners, proxy, and InfluxDB are on the same network. Port forwarding is required otherwise.
+
 ## Database Setup
 
-1. Install InfluxDB on a computer on the same network as your miners and proxy, I highly recommend doing this on a Linux computer.
-2. Install the InfluxDB Client (influxdb-client).
+1. Install InfluxDB.
+2. Install an InfluxDB Client (influxdb-client on Linux).
 3. Create a database for the metrics to be written to.
 
     For this example, a single database 'MoneroMetrics' will be used.

@@ -22,7 +22,7 @@
     - port = port number to connect to
     - access-token = leave as 'null' for no access token, or type one of your choice in quotes
 
-```
+```json
 {
     "api": {
         "id": null,
@@ -66,7 +66,7 @@
     - urls = the IP address and port number of the InfluxDB server
     - database = the name of the database created in Step 3 of Database Setup
 
-```
+```powershell
 [[outputs.influxdb]]
   ## The full HTTP or UDP URL for your InfluxDB instance.
    urls = ["http://192.168.1.10:8086"]
@@ -81,7 +81,7 @@
     For this example, CoreTempTelegraf.exe is located in the root of C:\ - If not, specify the path accordingly.
 
 
-```
+```powershell
 [[inputs.exec]]
    commands = [
       'powershell -Command "C:\CoreTempTelegraf"'
@@ -94,7 +94,7 @@
 
     The process for this will be dependant on the operating system the wallet runs on. The following example is for Monero Wallet GUI on Windows.
 
-```
+```powershell
 monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemon-address <IP>:<PORT> --password <PASSWORD> --rpc-bind-ip 0.0.0.0 --confirm-external-bind --disable-rpc-login
 ```
 

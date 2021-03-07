@@ -69,12 +69,13 @@ lastpayment=$(echo $getpayments | jq '.[0].ts')
 
 now=$(date +%s)
 timediff=(`expr $now - $lastpayment`)
+
 gotdue=$(echo $getdue | jq '.amtDue')
 
-adj=0.0
+adj1=0.0
 adj2=0.00
 
-if [ ${#gotdue} -eq 11 ]; then amtdue=$(echo $adj$gotdue)
+if [ ${#gotdue} -eq 11 ]; then amtdue=$(echo $adj1$gotdue)
 else amtdue=$(echo $adj2$gotdue)
 fi
 

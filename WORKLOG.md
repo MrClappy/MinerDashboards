@@ -142,6 +142,7 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=balance' --data-binary "balance,rig=
 
 ## References
 
+- XMRig HTTP API: https://xmrig.com/docs/miner/api
 - MoneroOcean API: https://github.com/MoneroOcean/nodejs-pool/blob/master/lib/api.js
 - CoinMarketCap API: https://coinmarketcap.com/api/documentation/v1/
 - Wemo Insight SOAP: https://github.com/tigoe/WeMoExamples

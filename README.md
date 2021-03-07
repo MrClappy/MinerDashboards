@@ -2,7 +2,7 @@
 
 This repository contains bash scripts that scrape metrics from XMRig miners, XMRig proxies, CoreTemp, the MoneroOcean pool, CoinMarketCap, Wemo Insight power plugs, and Monero wallets in order to log into InfluxDB databases to display on Grafana dashboards.
 
-Detailed instructions are documented in the [Work Log](../blob/main/WORKLOG.md)
+Detailed instructions are documented in the [Work Log](../main/WORKLOG.md)
 
 ![Imgur Image](https://i.imgur.com/aggX3hG.jpg)
 

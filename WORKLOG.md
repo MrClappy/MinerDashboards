@@ -1,6 +1,6 @@
 # Dashboard Work Log
 
-## Metric Enabling
+## Metric Setup
 
 1. Enabled XMRig HTTP API on miners and proxy
 2. Installed Telegraf on miners

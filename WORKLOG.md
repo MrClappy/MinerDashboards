@@ -6,17 +6,17 @@
 2. Install the InfluxDB Client (influxdb-client).
 3. Create a database for the metrics to be logged into.
 
-For this example, a single database 'MoneroMetrics' will be used.
+    For this example, a single database 'MoneroMetrics' will be used.
 
 5. Open the InfluxDB port on the computer's firewall.
 
-The process for this will be dependant on the operating system InfluxDB runs on.
+    The process for this will be dependant on the operating system InfluxDB runs on.
 
 ## Metric Setup
 
 1. Enable XMRig HTTP API on miners and/or XMRig proxy.
 
-In the XMRig config.json file, locate the API settings and set:
+    In the XMRig config.json file, locate the API settings and set:
 - enabled = true
 - host = IP address of the miner
 - port = port number to connect to
@@ -266,7 +266,7 @@ Specific panel configurations are dependant on personal preference. The followin
 - Get Amount Due: SELECT last("AmountDue") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Miner Hash Rate: SELECT mean("HashRate") FROM "MinerMetrics" WHERE ("Miner" = '<MINER_ID>') AND $timeFilter
 - Get CPU Temp: SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
-- Get Current Algo: SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter (filter by Algo string column in panel options)
+- Get Current Algo: SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter (filter Algo column in panel options)
 - Get Wattage: SELECT last("PowerDraw") FROM "PowerDraw" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Proxy Uptime: SELECT last("UpTime") FROM "ProxyMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 - Get Current XMR Value: SELECT mean("XMRValue) FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)

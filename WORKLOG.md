@@ -4,7 +4,7 @@
 
 1. Install InfluxDB on a computer on the same network as your miners and proxy, I highly recommend doing this on a Linux computer.
 2. Install the InfluxDB Client (influxdb-client).
-3. Create a database for the metrics to be logged into.
+3. Create a database for the metrics to be written to.
 
     For this example, a single database 'MoneroMetrics' will be used.
 

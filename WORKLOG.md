@@ -102,7 +102,7 @@
 
     The process for this will be dependant on the operating system the wallet runs on. The following example is for Monero Wallet GUI on Windows.
     
-    Note: Configure all variables within ```powershell'< >'``` to reflect your settings.
+    Note: Configure all variables within ```<FOO>``` to reflect your settings.
 
 ```powershell
 monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemon-address <IP>:<PORT> --password <PASSWORD> --rpc-bind-ip 0.0.0.0 --confirm-external-bind --disable-rpc-login

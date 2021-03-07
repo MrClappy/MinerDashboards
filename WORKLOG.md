@@ -17,8 +17,8 @@
    data_format = "influx"
 ```
 
-8. Configured Telegraf as Windows service on miners
-9. Created Scheduled Task to run Monero Wallet RPC Server on Startup:
+7. Configured Telegraf as Windows service on miners
+8. Created Scheduled Task to run Monero Wallet RPC Server on Startup:
 
 ```
 monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemon-address <IP>:<PORT> --password <PASSWORD> --rpc-bind-ip 0.0.0.0 --confirm-external-bind --disable-rpc-login

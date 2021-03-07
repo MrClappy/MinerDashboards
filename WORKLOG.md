@@ -269,7 +269,7 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "Wallet
  - Get Last Payment: SELECT mean("LastPayment") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
  - Get Amount Due: SELECT last("AmountDue") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
  - Get Miner Hash Rate: SELECT mean("HashRate") FROM "MinerMetrics" WHERE ("Miner" = '<MINER_ID>') AND $timeFilter
- - Get Current Algo: SELECT * FROM "MinerMetrics" WHERE ("Miner" = '<MINER_ID>') AND $timeFilter (filter Algo column in panel options)
+ - Get Current Algo: SELECT * FROM "MinerMetrics" WHERE ("Miner" = '<MINER_ID>') AND $timeFilter (filter Algo column in panel)
  - Get CPU Temp: SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_COMPUTER_NAME>') AND $timeFilter
  - Get Wattage: SELECT last("PowerDraw") FROM "PowerDraw" WHERE $timeFilter GROUP BY time($__interval) fill(null)
  - Get Proxy Uptime: SELECT last("UpTime") FROM "ProxyMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)

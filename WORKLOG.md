@@ -17,10 +17,10 @@
 1. Enable XMRig HTTP API on miners and/or XMRig proxy.
 
     In the XMRig config.json file, locate the API settings and set:
-- enabled = true
-- host = IP address of the miner
-- port = port number to connect to
-- access-token = leave as 'null' for no access token, or type one of your choice in quotes
+    - enabled = true
+    - host = IP address of the miner
+    - port = port number to connect to
+    - access-token = leave as 'null' for no access token, or type one of your choice in quotes
 
 ```
 {
@@ -39,32 +39,32 @@
 
 2. Open the API port on the miner's firewall.
 
-The process for this will be dependant on the operating system the miner runs on.
+    The process for this will be dependant on the operating system the miner runs on.
 
 3. Install Core Temp on miners.
 
-Core Temp will be used to monitor the CPU temperature of the miner. This will only work on Windows.
+    Core Temp will be used to monitor the CPU temperature of the miner. This will only work on Windows.
 
 4. Enable global shared memory & run on startup in Core Temp on miners.
 
-In Core Temp GUI: 
-Options > Settings > General (Enable Start Core Temp with Windows)
-Options > Settings > Advanced (Enable SNMP)
+    In Core Temp GUI: 
+    Options > Settings > General (Enable Start Core Temp with Windows)
+    Options > Settings > Advanced (Enable SNMP)
 
 5. Install CoreTempTelegraf on miners.
 
-CoreTempTelegraf will be used to query the CPU temperature from Core Temp in a way that can be written to a database. 
-The executable can be found in the references section of this document.
+    CoreTempTelegraf will be used to query the CPU temperature from Core Temp in a way that can be written to a database. 
+    The executable can be found in the references section of this document.
 
 6. Install Telegraf on miners.
 
-Telegraf will be used to write the CPU temperature to the InfluxDB.
+    Telegraf will be used to write the CPU temperature to the InfluxDB.
 
-7. Configure Telegraf to write CoreTempTelegraf metrics to InfluxDB database.
+7. Configure Telegraf to write to InfluxDB database.
 
-In the telegraf.conf file, locate the InfluxDB output section under Output Plugins and set:
-- urls = the IP address and port number of the InfluxDB server
-- database = the name of the database created in Step 3 of Database Setup
+    In the telegraf.conf file, locate the InfluxDB output section under Output Plugins and set:
+    - urls = the IP address and port number of the InfluxDB server
+    - database = the name of the database created in Step 3 of Database Setup
 
 ```
 [[outputs.influxdb]]
@@ -73,11 +73,13 @@ In the telegraf.conf file, locate the InfluxDB output section under Output Plugi
 
   ## The target database for metrics; will be created as needed.
    database = "MoneroMetrics"
-
 ```
 
-In the telegraf.conf file, under the Input Plugins section, delete any undesired metrics and add the following input for CoreTempTelegraf
-For this example, CoreTempTelegraf.exe is located in the root of C:\ - If not, specify the path accordingly.
+8. Configure Telegrad to get Core Temp metrics.
+
+    In the telegraf.conf file, under the Input Plugins section, delete any undesired metrics and add the following input for CoreTempTelegraf
+    For this example, CoreTempTelegraf.exe is located in the root of C:\ - If not, specify the path accordingly.
+
 
 ```
 [[inputs.exec]]
@@ -90,7 +92,7 @@ For this example, CoreTempTelegraf.exe is located in the root of C:\ - If not, s
 8. (Optional but recommended) Configure Telegraf as Windows service on miners, see reference at the bottom of this file for details.
 9. Create Scheduled Task to run Monero Wallet RPC Server on startup.
 
-The process for this will be dependant on the operating system the wallet runs on. The following example is for Monero Wallet GUI on Windows.
+    The process for this will be dependant on the operating system the wallet runs on. The following example is for Monero Wallet GUI on Windows.
 
 ```
 monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemon-address <IP>:<PORT> --password <PASSWORD> --rpc-bind-ip 0.0.0.0 --confirm-external-bind --disable-rpc-login
@@ -98,19 +100,19 @@ monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemo
 
 10. Create a free developer account on CoinMarketCap.com and get an API key.
 
-This will be used to get the current market value and percent change in the last 24 hours.
+    This will be used to get the current market value and percent change in the last 24 hours.
 
 ## Metric Scraping
 
-In each bash script, configure all variables within '< >' to reflect your settings.
+    In each bash script, configure all variables within '< >' to reflect your settings.
 
 1. Create a bash script for each miner to get metrics from the XMRig API and write to InfluxDB.
 
-The following example gets:
-- Current Hash Rate (HashRate)
-- Miner ID (Miner)
-- Current Algorithm (Algo)
-- Miner UpTime (UpTime)
+    The following example gets:
+    - Current Hash Rate (HashRate)
+    - Miner ID (Miner)
+    - Current Algorithm (Algo)
+    - Miner UpTime (UpTime)
 
 ```shell
 #!/bin/bash
@@ -128,9 +130,9 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "MinerM
 
 2. Create a bash script to get metrics from the proxy API / pool API and write to InfluxDB.
 
-The following example gets:
-- Number of miners connected (MinerCount)
-- Proxy UpTime (UpTime)
+    The following example gets:
+    - Number of miners connected (MinerCount)
+    - Proxy UpTime (UpTime)
 
 ```shell
 #!/bin/bash
@@ -146,11 +148,11 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "ProxyM
 
 3. Create a bash script to get metrics from pool API and write to InfluxDB.
 
-The following example gets:
-- Pool Hash Rate (PoolHashRate)
-- Hash Rate of all miners connected to pool (MinerHashRate)
-- Last Payment Received (LastPayment)
-- Amount mined since last payment (AmountDue)
+    The following example gets:
+    - Pool Hash Rate (PoolHashRate)
+    - Hash Rate of all miners connected to pool (MinerHashRate)
+    - Last Payment Received (LastPayment)
+    - Amount mined since last payment (AmountDue)
 
 ```shell
 #!/bin/bash
@@ -182,8 +184,8 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "PoolMe
 
 4. Create a bash script to get metrics from Wemo Insight plug and write to InfluxDB.
 
-The following example gets:
-- Current power draw in milliwatts (PowerDraw)
+    The following example gets:
+    - Current power draw in milliwatts (PowerDraw)
 
 ```shell
 #!/bin/bash
@@ -198,9 +200,9 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "PowerD
 
 5. Create a bash script to pull metrics from CoinMarketCap API and write to InfluxDB.
 
-The following example gets:
-- Current XMR Market Value (XMRValue)
-- Percent of Change in Last 24 Hours (24hChange)
+    The following example gets:
+    - Current XMR Market Value (XMRValue)
+    - Percent of Change in Last 24 Hours (24hChange)
 
 ```shell
 #!/bin/bash
@@ -216,8 +218,8 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "XMRVal
 
 6. Create a bash script to get metrics from Monero Wallet RPC server.
 
-The following example gets:
-- Current Wallet Balance (WalletBalance)
+    The following example gets:
+    - Current Wallet Balance (WalletBalance)
 
 ```shell
 #!/bin/bash
@@ -235,9 +237,11 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "Wallet
 
 1. Create cron jobs to run each bash script at regular intervals.
 
-The following example runs all scripts once every minute, with the exception of XMRMetrics.sh due to free CoinMarketCap API accounts being limited to 333 requests per day. 1440 minutes in a day / 333 maximum daily requests = a minimum request interval of 4.3 minutes - this is rounded to 5 minutes for safety.
+    The following example runs all scripts once every minute, with the exception of XMRMetrics.sh due to free CoinMarketCap API accounts being limited to 333 
+    requests per day. 1440 minutes in a day / 333 maximum daily requests = a minimum request interval of 4.3 minutes - this is rounded to 5 minutes for safety.
 
-Note: The MoneroOcean API also provides a current XMR value metric without this request limit. CoinMarketCap is used in this case solely for additional information such as % of change, etc.
+    Note: The MoneroOcean API also provides a current XMR value metric without this request limit. CoinMarketCap is used in this case solely for additional 
+    information such as % of change, etc.
 
 ```
 * * * * * /root/Scripts/MetricScrapers/Miner1Metrics.sh
@@ -253,25 +257,25 @@ Note: The MoneroOcean API also provides a current XMR value metric without this 
 
 1. Install Grafana or create a free Grafana Cloud account.
 
-To use a Grafana Cloud account, you must port forward your InfluxDB port to your external IP address.
+    To use a Grafana Cloud account, you must port forward your InfluxDB port to your external IP address.
 
 2. Add the MoneroMetrics database as an InfluxDB Input Source in Grafana.
 3. Query the database to display metrics in Grafana Dashboard panels as desired.
 
-Specific panel configurations are dependant on personal preference. The following are example queries:
+    Specific panel configurations are dependant on personal preference. The following are example queries:
 
-- Get Total Hash Rate: SELECT mean("MinerHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-- Get Pool Hash Rate: SELECT mean("PoolHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-- Get Last Payment: SELECT mean("LastPayment") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-- Get Amount Due: SELECT last("AmountDue") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-- Get Miner Hash Rate: SELECT mean("HashRate") FROM "MinerMetrics" WHERE ("Miner" = '<MINER_ID>') AND $timeFilter
-- Get CPU Temp: SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
-- Get Current Algo: SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter (filter Algo column in panel options)
-- Get Wattage: SELECT last("PowerDraw") FROM "PowerDraw" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-- Get Proxy Uptime: SELECT last("UpTime") FROM "ProxyMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-- Get Current XMR Value: SELECT mean("XMRValue) FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-- Get Day % Value Change: SELECT mean("24hChange") FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)
-- Get Wallet Balance: SELECT last("WalletBalance") FROM "WalletMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Total Hash Rate: SELECT mean("MinerHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Pool Hash Rate: SELECT mean("PoolHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Last Payment: SELECT mean("LastPayment") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Amount Due: SELECT last("AmountDue") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Miner Hash Rate: SELECT mean("HashRate") FROM "MinerMetrics" WHERE ("Miner" = '<MINER_ID>') AND $timeFilter
+    - Get CPU Temp: SELECT "temperature" FROM "coretemp_cpu" WHERE ("host" = '<MINER_NAME>') AND $timeFilter
+    - Get Current Algo: SELECT * FROM "xmrigs" WHERE ("rig" = '<MINER_NAME>') AND $timeFilter (filter Algo column in panel options)
+    - Get Wattage: SELECT last("PowerDraw") FROM "PowerDraw" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Proxy Uptime: SELECT last("UpTime") FROM "ProxyMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Current XMR Value: SELECT mean("XMRValue) FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Day % Value Change: SELECT mean("24hChange") FROM "XMRValue" WHERE $timeFilter GROUP BY time($__interval) fill(null)
+    - Get Wallet Balance: SELECT last("WalletBalance") FROM "WalletMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
 
 ## References
 
@@ -287,4 +291,4 @@ Specific panel configurations are dependant on personal preference. The followin
 
 If you find this information helpful, donations are greatly appreciated!
 
-XMR: 47zEuqnGse6LBQMF9hnRGxGn7bLgJQXzZThjqFMFsqb152PVmiPP5eXfK7vNPpQTX5W5BmAqqu6DeVdUrT7nG5NyMNxvMr2
+XMR:47zEuqnGse6LBQMF9hnRGxGn7bLgJQXzZThjqFMFsqb152PVmiPP5eXfK7vNPpQTX5W5BmAqqu6DeVdUrT7nG5NyMNxvMr2

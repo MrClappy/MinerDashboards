@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -27,7 +27,6 @@
           },
           "custom": {},
           "mappings": [],
-          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -42,12 +41,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 4,
         "w": 8,
         "x": 0,
         "y": 0
       },
-      "id": 14,
+      "id": 2,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -83,8 +82,9 @@
           "measurement": "statistics",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
-          "resultFormat": "table",
+          "resultFormat": "time_series",
           "select": [
             [
               {
@@ -95,7 +95,7 @@
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               }
             ]
           ],
@@ -106,18 +106,16 @@
       "type": "stat"
     },
     {
-      "datasource": "Telegraf",
+      "datasource": "CPU Temps",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "custom": {},
-          "decimals": 0,
           "mappings": [],
           "max": 100,
           "min": 30,
-          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -145,9 +143,8 @@
         "x": 8,
         "y": 0
       },
-      "id": 12,
+      "id": 4,
       "options": {
-        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -162,23 +159,11 @@
       "pluginVersion": "7.4.3",
       "targets": [
         {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
+          "groupBy": [],
           "measurement": "coretemp_cpu",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -188,10 +173,6 @@
                   "temperature"
                 ],
                 "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
               }
             ]
           ],
@@ -204,22 +185,22 @@
           ]
         }
       ],
-      "title": "PAC Temp",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Miner 1 Temp",
       "type": "gauge"
     },
     {
-      "datasource": "Telegraf",
+      "datasource": "CPU Temps",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "custom": {},
-          "decimals": 0,
           "mappings": [],
           "max": 100,
           "min": 30,
-          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -247,7 +228,7 @@
         "x": 12,
         "y": 0
       },
-      "id": 30,
+      "id": 5,
       "options": {
         "reduceOptions": {
           "calcs": [
@@ -263,23 +244,11 @@
       "pluginVersion": "7.4.3",
       "targets": [
         {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
+          "groupBy": [],
           "measurement": "coretemp_cpu",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -289,10 +258,6 @@
                   "temperature"
                 ],
                 "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
               }
             ]
           ],
@@ -305,7 +270,9 @@
           ]
         }
       ],
-      "title": "BIG Temp",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Miner 2 Temp",
       "type": "gauge"
     },
     {
@@ -317,7 +284,6 @@
           },
           "custom": {},
           "mappings": [],
-          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -332,12 +298,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 8,
         "x": 16,
         "y": 0
       },
-      "id": 20,
+      "id": 7,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -373,6 +339,7 @@
           "measurement": "power",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -385,18 +352,20 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
           "tags": []
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Farm Power",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "Balance",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -404,7 +373,6 @@
           },
           "custom": {},
           "mappings": [],
-          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -417,17 +385,18 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "XMR"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 8,
-        "y": 5
+        "h": 4,
+        "w": 8,
+        "x": 0,
+        "y": 4
       },
-      "id": 16,
+      "id": 27,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -437,7 +406,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^algo$/",
+          "fields": "",
           "values": false
         },
         "text": {},
@@ -446,116 +415,46 @@
       "pluginVersion": "7.4.3",
       "targets": [
         {
-          "groupBy": [],
-          "measurement": "xmrigs",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "balance",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT * FROM \"xmrigs\" WHERE $timeFilter",
           "queryType": "randomWalk",
-          "rawQuery": false,
           "refId": "A",
-          "resultFormat": "table",
+          "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "*"
+                  "balance"
                 ],
                 "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "rig",
-              "operator": "=",
-              "value": "PAC"
-            }
-          ]
-        }
-      ],
-      "title": "PAC Algo",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [],
-          "noValue": "OFF",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
               },
               {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 12,
-        "y": 5
-      },
-      "id": 28,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^algo$/",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.4.3",
-      "targets": [
-        {
-          "groupBy": [],
-          "measurement": "xmrigs",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "table",
-          "select": [
-            [
-              {
-                "params": [
-                  "*"
-                ],
-                "type": "field"
+                "params": [],
+                "type": "last"
               }
             ]
           ],
-          "tags": [
-            {
-              "key": "rig",
-              "operator": "=",
-              "value": "BIG"
-            }
-          ]
+          "tags": []
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "BIG Algo",
+      "title": "Wallet Balance",
       "type": "stat"
     },
     {
@@ -581,12 +480,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 8,
         "x": 16,
-        "y": 5
+        "y": 4
       },
-      "id": 6,
+      "id": 9,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -622,8 +521,9 @@
           "measurement": "statistics",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
-          "resultFormat": "table",
+          "resultFormat": "time_series",
           "select": [
             [
               {
@@ -634,7 +534,7 @@
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               }
             ]
           ],
@@ -642,6 +542,168 @@
         }
       ],
       "title": "Proxy Uptime",
+      "type": "stat"
+    },
+    {
+      "datasource": "Rig Stats",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 8,
+        "y": 5
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^xmrigs\\.algo$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "xmrigs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"xmrigs\" WHERE (\"rig\" = 'PAC') AND $timeFilter",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "*"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "rig",
+              "operator": "=",
+              "value": "PAC"
+            }
+          ]
+        }
+      ],
+      "title": "Miner 1 Algo",
+      "type": "stat"
+    },
+    {
+      "datasource": "Rig Stats",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 12,
+        "y": 5
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^xmrigs\\.algo$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "xmrigs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"xmrigs\" WHERE (\"rig\" = 'PAC') AND $timeFilter",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "*"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "rig",
+              "operator": "=",
+              "value": "BIG"
+            }
+          ]
+        }
+      ],
+      "title": "Miner 2 Algo",
       "type": "stat"
     },
     {
@@ -656,7 +718,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 24,
+            "fillOpacity": 30,
             "gradientMode": "opacity",
             "hideFrom": {
               "graph": false,
@@ -691,12 +753,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 9,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 8
       },
-      "id": 2,
+      "id": 14,
       "options": {
         "graph": {},
         "legend": {
@@ -714,7 +776,7 @@
           "groupBy": [
             {
               "params": [
-                "1m"
+                "$__interval"
               ],
               "type": "time"
             },
@@ -728,6 +790,7 @@
           "measurement": "statistics",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -762,7 +825,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 24,
+            "fillOpacity": 30,
             "gradientMode": "opacity",
             "hideFrom": {
               "graph": false,
@@ -797,12 +860,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 9,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 8
       },
-      "id": 18,
+      "id": 15,
       "options": {
         "graph": {},
         "legend": {
@@ -814,20 +877,27 @@
           "mode": "single"
         }
       },
-      "pluginVersion": "7.4.2",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "groupBy": [
             {
               "params": [
-                "1m"
+                "$__interval"
               ],
               "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "statistics",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -840,7 +910,7 @@
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               }
             ]
           ],
@@ -874,11 +944,11 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 5,
+        "w": 6,
         "x": 0,
-        "y": 20
+        "y": 17
       },
-      "id": 22,
+      "id": 17,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -914,6 +984,7 @@
           "measurement": "price",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -933,7 +1004,7 @@
           "tags": []
         }
       ],
-      "title": "XMR Value",
+      "title": "XMR Price",
       "type": "stat"
     },
     {
@@ -948,7 +1019,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 24,
+            "fillOpacity": 30,
             "gradientMode": "opacity",
             "hideFrom": {
               "graph": false,
@@ -978,17 +1049,17 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "currencyUSD"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 8,
-        "w": 14,
-        "x": 5,
-        "y": 20
+        "w": 12,
+        "x": 6,
+        "y": 17
       },
-      "id": 26,
+      "id": 19,
       "options": {
         "graph": {},
         "legend": {
@@ -1000,13 +1071,13 @@
           "mode": "single"
         }
       },
-      "pluginVersion": "7.4.2",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$__interval"
               ],
               "type": "time"
             },
@@ -1020,6 +1091,7 @@
           "measurement": "price",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1039,7 +1111,7 @@
           "tags": []
         }
       ],
-      "title": "XMR Value",
+      "title": "XMR Price",
       "type": "timeseries"
     },
     {
@@ -1065,12 +1137,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
-        "x": 19,
-        "y": 20
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 17
       },
-      "id": 32,
+      "id": 23,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -1089,10 +1161,24 @@
       "pluginVersion": "7.4.3",
       "targets": [
         {
-          "groupBy": [],
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
           "measurement": "statistics",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1102,6 +1188,10 @@
                   "payment"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
               }
             ]
           ],
@@ -1119,6 +1209,7 @@
             "mode": "continuous-RdYlGr"
           },
           "custom": {},
+          "decimals": 2,
           "mappings": [],
           "max": 0.01,
           "min": -0.01,
@@ -1135,17 +1226,17 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "percent"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 5,
+        "w": 6,
         "x": 0,
-        "y": 24
+        "y": 21
       },
-      "id": 24,
+      "id": 21,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -1181,6 +1272,7 @@
           "measurement": "price",
           "orderByTime": "ASC",
           "policy": "default",
+          "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1193,6 +1285,98 @@
               },
               {
                 "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "24h Change",
+      "type": "stat"
+    },
+    {
+      "datasource": "MO Stats",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "decimals": 4,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "XMR"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 21
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "statistics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "queryType": "randomWalk",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "due"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
                 "type": "last"
               }
             ]
@@ -1200,7 +1384,7 @@
           "tags": []
         }
       ],
-      "title": "Day Change",
+      "title": "Currently Due",
       "type": "stat"
     }
   ],
@@ -1212,12 +1396,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Farm Stats",
-  "uid": "1TEj5DsGk",
-  "version": 68
+  "title": "FarmStats",
+  "uid": "T_B2vXsGk",
+  "version": 24
 }

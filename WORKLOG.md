@@ -20,9 +20,9 @@
 
 ### Script    
     
-    On a clean Ubuntu 20.04 install, the following commands will setup this environment.
+On a clean Ubuntu 20.04 install, the following commands will setup this environment.
 
-    Note: Configure all variables within ```< >``` to reflect your settings.
+Note: Configure all variables within ```< >``` to reflect your settings.
 
 ```shell
 #!/bin/bash

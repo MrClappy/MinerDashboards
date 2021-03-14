@@ -215,7 +215,7 @@ if [ ${#AmountDue} -eq 11 ]; then AmountDue=$(echo $adj1$AmountDue)
 else AmountDue=$(echo $adj2$AmountDue)
 fi
 
-curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "PoolMetrics,Pool=MoneroOcean PoolHashRate=$PoolHashRate,LastPayment=$LastPayment,AmountDue=$AmountDue"
+curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "PoolMetrics,Pool=MoneroOcean PoolHashRate=$PoolHashRate,MinerHashRate=$MinerHashRate,LastPayment=$LastPayment,AmountDue=$AmountDue"
 ```
 
 4. Create a bash script to get metrics from Wemo Insight plug and write to InfluxDB.

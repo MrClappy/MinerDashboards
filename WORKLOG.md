@@ -271,7 +271,9 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "Wallet
 
 ## Metric Scraping Automation
 
-1. Create cron jobs to run each bash script at regular intervals.
+1. Make all scripts executable using 'chmod +x <SCRIPT_NAME>'
+
+2. Create cron jobs to run each bash script at regular intervals.
 
     The following example runs all scripts once every minute, with the exception of XMRMetrics.sh due to free CoinMarketCap API accounts being limited to 333 
     requests per day. 1440 minutes in a day / 333 maximum daily requests = a minimum request interval of 4.3 minutes - this is rounded to 5 minutes for safety.

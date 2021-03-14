@@ -64,7 +64,7 @@ curl -POST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE Moner
         "enabled": true,
         "host": "192.168.1.100",
         "port": 9999,
-        "access-token": "Min3r1T0k3n",
+        "access-token": null,
         "restricted": true
     }
 }
@@ -154,12 +154,12 @@ monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemo
 #!/bin/bash
 #Miner1Metrics.sh
 
-MinerStats=$(curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer <TOKEN>" http://<IP>:<PORT>/1/summary)
+MinerStats=$(curl -X GET -H "Content-Type: application/json" http://<IP>:<PORT>/1/summary)
 
-HashRate=$(echo $minerstats | jq -r '.hashrate.total[0]')
-Miner=$(echo $minerstats | jq -r '.worker_id')
-Algo=$(echo $minerstats | jq -r '.algo')
-UpTime=$(echo $minerstats | jq -r '.uptime')
+HashRate=$(echo $MinerStats | jq -r '.hashrate.total[0]')
+Miner=$(echo $MinerStats | jq -r '.worker_id')
+Algo=$(echo $MinerStats | jq -r '.algo')
+UpTime=$(echo $MinerStats | jq -r '.uptime')
 
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "MinerMetrics,Miner=$Miner,Algo=$Algo UpTime=$UpTime,HashRate=$HashRate"
 ```

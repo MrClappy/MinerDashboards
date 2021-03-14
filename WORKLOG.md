@@ -204,7 +204,7 @@ MinerHashRate=$(echo $MinerHashRate | jq '.[0].hs2')
 LastPayment=$(echo $LastPayment | jq '.[0].ts')
 
 Now=$(date +%s)
-LastPayment=(`expr $now - $LastPayment`)
+LastPayment=(`expr $Now - $LastPayment`)
 
 AmountDue=$(echo $AmountDue | jq '.amtDue')
 

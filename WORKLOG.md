@@ -19,7 +19,7 @@
 
     The process for this will be dependant on the operating system InfluxDB runs on.
 
-### Script    
+### Setup Script    
     
 On a clean Ubuntu 20.04 install, the following commands will setup this environment.
 

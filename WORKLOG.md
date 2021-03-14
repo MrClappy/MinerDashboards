@@ -14,7 +14,7 @@
 
     For this example, a single database 'MoneroMetrics' will be used.
 
-5. Open the InfluxDB port on the computer's firewall.
+5. Open the InfluxDB port (8086) on the computer's firewall.
 
     The process for this will be dependant on the operating system InfluxDB runs on.
 

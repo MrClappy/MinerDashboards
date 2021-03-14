@@ -195,7 +195,7 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "ProxyM
 #PoolMetrics.sh
 
 PoolHashRate=$(curl -X GET -H "Content-Type: application/json" https://api.moneroocean.stream/pool/stats)
-MinerHashRate=$(curl https://api.moneroocean.stream/miner/<WALLET_ID>/chart/hashrate)
+MinerHashRate=$(curl https://api.moneroocean.stream/miner/<ADDRESS>/chart/hashrate)
 LastPayment=$(curl -X GET -H "Content-Type: application/json" https://api.moneroocean.stream/miner/<ADDRESS>/payments)
 AmountDue=$(curl -X GET -H "Content-Type: application/json" https://api.moneroocean.stream/miner/<ADDRESS>/stats)
 

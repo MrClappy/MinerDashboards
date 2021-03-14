@@ -201,7 +201,7 @@ AmountDue=$(curl -X GET -H "Content-Type: application/json" https://api.monerooc
 
 PoolHashRate=$(echo $PoolHashRate | jq '.pool_statistics.hashRate')
 MinerHashRate=$(echo $MinerHashRate | jq '.[0].hs2')
-LastPayment=$(echo $getpayments | jq '.[0].ts')
+LastPayment=$(echo $LastPayment | jq '.[0].ts')
 
 Now=$(date +%s)
 LastPayment=(`expr $now - $LastPayment`)

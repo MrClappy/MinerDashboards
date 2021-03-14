@@ -19,7 +19,7 @@
   "links": [],
   "panels": [
     {
-      "datasource": "Proxy Stats",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -62,7 +62,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [
@@ -79,7 +79,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "statistics",
+          "measurement": "PoolMetrics",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -89,7 +89,7 @@
             [
               {
                 "params": [
-                  "hashrate"
+                  "MinerHashRate"
                 ],
                 "type": "field"
               },
@@ -106,7 +106,7 @@
       "type": "stat"
     },
     {
-      "datasource": "CPU Temps",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -156,7 +156,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [],
@@ -187,11 +187,11 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Miner 1 Temp",
+      "title": "PAC Temp",
       "type": "gauge"
     },
     {
-      "datasource": "CPU Temps",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -201,6 +201,7 @@
           "mappings": [],
           "max": 100,
           "min": 30,
+          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -241,7 +242,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [],
@@ -272,11 +273,11 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Miner 2 Temp",
+      "title": "BIG Temp",
       "type": "gauge"
     },
     {
-      "datasource": "Farm Power",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -319,7 +320,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [
@@ -336,7 +337,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "power",
+          "measurement": "PowerDraw",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -346,7 +347,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "FarmPowerDraw"
                 ],
                 "type": "field"
               },
@@ -365,7 +366,7 @@
       "type": "stat"
     },
     {
-      "datasource": "Balance",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -412,7 +413,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [
@@ -429,7 +430,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "balance",
+          "measurement": "WalletBalance",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -439,7 +440,7 @@
             [
               {
                 "params": [
-                  "balance"
+                  "WalletBalance"
                 ],
                 "type": "field"
               },
@@ -458,7 +459,7 @@
       "type": "stat"
     },
     {
-      "datasource": "Proxy Stats",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -501,7 +502,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [
@@ -518,7 +519,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "statistics",
+          "measurement": "ProxyMetrics",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -528,7 +529,7 @@
             [
               {
                 "params": [
-                  "uptime"
+                  "UpTime"
                 ],
                 "type": "field"
               },
@@ -545,7 +546,7 @@
       "type": "stat"
     },
     {
-      "datasource": "Rig Stats",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -585,17 +586,17 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^xmrigs\\.algo$/",
+          "fields": "/^MinerMetrics\\.Algo$/",
           "values": false
         },
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [],
-          "measurement": "xmrigs",
+          "measurement": "MinerMetrics",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT * FROM \"xmrigs\" WHERE (\"rig\" = 'PAC') AND $timeFilter",
@@ -615,18 +616,18 @@
           ],
           "tags": [
             {
-              "key": "rig",
+              "key": "Miner",
               "operator": "=",
               "value": "PAC"
             }
           ]
         }
       ],
-      "title": "Miner 1 Algo",
+      "title": "PAC Algo",
       "type": "stat"
     },
     {
-      "datasource": "Rig Stats",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -634,6 +635,7 @@
           },
           "custom": {},
           "mappings": [],
+          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -672,11 +674,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [],
-          "measurement": "xmrigs",
+          "measurement": "MinerMetrics",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT * FROM \"xmrigs\" WHERE (\"rig\" = 'PAC') AND $timeFilter",
@@ -696,18 +698,18 @@
           ],
           "tags": [
             {
-              "key": "rig",
+              "key": "Miner",
               "operator": "=",
               "value": "BIG"
             }
           ]
         }
       ],
-      "title": "Miner 2 Algo",
+      "title": "BIG Algo",
       "type": "stat"
     },
     {
-      "datasource": "Proxy Stats",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -735,6 +737,7 @@
             "spanNulls": true
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -787,7 +790,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "statistics",
+          "measurement": "PoolMetrics",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -797,7 +800,7 @@
             [
               {
                 "params": [
-                  "hashrate"
+                  "MinerHashRate"
                 ],
                 "type": "field"
               },
@@ -814,7 +817,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": "MO Stats",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -842,6 +845,8 @@
             "spanNulls": true
           },
           "mappings": [],
+          "max": 150000000,
+          "min": 40000000,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -894,7 +899,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "statistics",
+          "measurement": "PoolMetrics",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -904,7 +909,7 @@
             [
               {
                 "params": [
-                  "hashrate"
+                  "PoolHashRate"
                 ],
                 "type": "field"
               },
@@ -921,7 +926,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": "XMR Price",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -964,7 +969,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [
@@ -981,7 +986,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "price",
+          "measurement": "XMRValue",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -991,7 +996,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "XMRValue"
                 ],
                 "type": "field"
               },
@@ -1008,7 +1013,7 @@
       "type": "stat"
     },
     {
-      "datasource": "XMR Price",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1088,7 +1093,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "price",
+          "measurement": "XMRValue",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -1098,7 +1103,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "XMRValue"
                 ],
                 "type": "field"
               },
@@ -1115,7 +1120,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": "MO Stats",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1158,7 +1163,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [
@@ -1175,7 +1180,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "statistics",
+          "measurement": "PoolMetrics",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -1185,7 +1190,7 @@
             [
               {
                 "params": [
-                  "payment"
+                  "LastPayment"
                 ],
                 "type": "field"
               },
@@ -1202,7 +1207,7 @@
       "type": "stat"
     },
     {
-      "datasource": "XMR Price",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1252,7 +1257,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [
@@ -1269,7 +1274,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "price",
+          "measurement": "XMRValue",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -1279,7 +1284,7 @@
             [
               {
                 "params": [
-                  "change"
+                  "DayChange"
                 ],
                 "type": "field"
               },
@@ -1296,7 +1301,7 @@
       "type": "stat"
     },
     {
-      "datasource": "MO Stats",
+      "datasource": "MoneroMetrics",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1344,7 +1349,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.4.5",
       "targets": [
         {
           "groupBy": [
@@ -1361,7 +1366,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "statistics",
+          "measurement": "PoolMetrics",
           "orderByTime": "ASC",
           "policy": "default",
           "queryType": "randomWalk",
@@ -1371,7 +1376,7 @@
             [
               {
                 "params": [
-                  "due"
+                  "AmountDue"
                 ],
                 "type": "field"
               },
@@ -1396,12 +1401,12 @@
     "list": []
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "FarmStats",
+  "title": "Farm Stats",
   "uid": "T_B2vXsGk",
-  "version": 24
+  "version": 35
 }

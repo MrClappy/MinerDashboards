@@ -22,4 +22,8 @@ if [ ${#AmountDue} -eq 11 ]; then AmountDue=$(echo $adj1$AmountDue)
 else AmountDue=$(echo $adj2$AmountDue)
 fi
 
+if [ -z "$LastPayment" ]; then 
+LastPayment=0
+fi
+
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "PoolMetrics,Pool=MoneroOcean PoolHashRate=$PoolHashRate,MinerHashRate=$MinerHashRate,LastPayment=$LastPayment,AmountDue=$AmountDue"

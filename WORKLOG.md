@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. Scripts are written in Bash, a Linux host is required to scrape metrics.
-2. Scripts require curl and jq, these can be installed manualy with apt or by running the script below.
+2. Scripts require curl and jq, these can be installed manualy with apt or by running the setup script below.
 3. CPU temperature metrics are only compatable on Windows miners.
 4. These instructions assume that miners, proxy, and InfluxDB are on the same network. Port forwarding is required otherwise.
 
@@ -213,8 +213,7 @@ if [ ${#AmountDue} -eq 11 ]; then AmountDue=$(echo $adj1$AmountDue)
 else AmountDue=$(echo $adj2$AmountDue)
 fi
 
-if [ -z "$LastPayment" ]; then 
-LastPayment=0
+if [ -z "$LastPayment" ]; then LastPayment=0
 fi
 
 curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "PoolMetrics,Pool=MoneroOcean PoolHashRate=$PoolHashRate,MinerHashRate=$MinerHashRate,LastPayment=$LastPayment,AmountDue=$AmountDue"
@@ -303,7 +302,9 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "Wallet
 2. Add the MoneroMetrics database as an InfluxDB Input Source in Grafana.
 3. Query the database to display metrics in Grafana Dashboard panels as desired.
 
-    Specific panel configurations are dependant on personal preference. The following are example queries:
+    Note: Specific panel configurations are dependant on personal preference.
+    
+### Example Queries
 
  - Get Total Hash Rate: SELECT mean("MinerHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)
  - Get Pool Hash Rate: SELECT mean("PoolHashRate") FROM "PoolMetrics" WHERE $timeFilter GROUP BY time($__interval) fill(null)

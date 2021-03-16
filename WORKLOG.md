@@ -297,7 +297,8 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "Wallet
 
 1. Install Grafana or create a free Grafana Cloud account.
 
-    To use a Grafana Cloud account, you must port forward your InfluxDB port to your external IP address.
+    Note: To use a Grafana Cloud account, you must port forward your InfluxDB port to your external IP address. The instructions and scripts provided here are unauthenticated, exposing your database to the internet in this state is a very bad idea. 
+    [See here for instructions on enabling authentication.](https://docs.influxdata.com/influxdb/v1.8/administration/authentication_and_authorization/#authentication)
 
 2. Add the MoneroMetrics database as an InfluxDB Input Source in Grafana.
 3. Query the database to display metrics in Grafana Dashboard panels as desired.

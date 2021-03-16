@@ -39,8 +39,6 @@ apt -y install jq
 apt -y install influxdb
 apt -y install influxdb-client
 service influxdb start
-curl -XPOST "http://localhost:8086/query" \
---data-urlencode "q=CREATE USER <USERNAME> WITH PASSWORD '<PASSWORD>' WITH ALL PRIVILEGES"
 curl -POST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE MoneroMetrics WITH DURATION 30d"
 ```
 

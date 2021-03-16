@@ -13,14 +13,8 @@ LastPayment=$(echo $LastPayment | jq '.[0].ts')
 Now=$(date +%s)
 LastPayment=(`expr $Now - $LastPayment`)
 
-AmountDue=$(echo $AmountDue | jq '.amtDue')
-
-adj1=0.0
-adj2=0.00
-
-if [ ${#AmountDue} -eq 11 ]; then AmountDue=$(echo $adj1$AmountDue)
-else AmountDue=$(echo $adj2$AmountDue)
-fi
+PreAmount=$(echo $AmountDue | jq '.amtDue')
+AmountDue=$(printf %13s $PreAmount | tr ' ' 0 | sed 's/............$/.&/')
 
 if [ -z "$LastPayment" ]; then 
 LastPayment=0

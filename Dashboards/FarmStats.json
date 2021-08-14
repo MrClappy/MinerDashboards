@@ -25,7 +25,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -62,7 +61,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -95,7 +94,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -112,7 +111,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "max": 100,
           "min": 30,
@@ -156,7 +154,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [],
@@ -173,6 +171,10 @@
                   "temperature"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
               }
             ]
           ],
@@ -180,14 +182,14 @@
             {
               "key": "host",
               "operator": "=",
-              "value": "PAC"
+              "value": "BIG"
             }
           ]
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "PAC Temp",
+      "title": "BIG Temp",
       "type": "gauge"
     },
     {
@@ -197,7 +199,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "max": 100,
           "min": 30,
@@ -242,7 +243,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [],
@@ -259,6 +260,10 @@
                   "temperature"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
               }
             ]
           ],
@@ -266,14 +271,14 @@
             {
               "key": "host",
               "operator": "=",
-              "value": "BIG"
+              "value": "JID"
             }
           ]
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "BIG Temp",
+      "title": "JID Temp",
       "type": "gauge"
     },
     {
@@ -283,7 +288,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -320,7 +324,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -372,8 +376,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
+          "noValue": "OFF",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -393,7 +397,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 5,
         "x": 0,
         "y": 4
       },
@@ -413,7 +417,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -465,7 +469,95 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
+          "mappings": [],
+          "noValue": "OFF",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 4
+      },
+      "id": 28,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.0.6",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "WalletBalance",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "queryType": "randomWalk",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "USDValue"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Wallet Balance",
+      "type": "stat"
+    },
+    {
+      "datasource": "MoneroMetrics",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -502,7 +594,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -535,7 +627,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -552,7 +644,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -560,13 +651,10 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
-          }
+          },
+          "unit": "Hs"
         },
         "overrides": []
       },
@@ -592,89 +680,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
-      "targets": [
-        {
-          "groupBy": [],
-          "measurement": "MinerMetrics",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"xmrigs\" WHERE (\"rig\" = 'PAC') AND $timeFilter",
-          "queryType": "randomWalk",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "*"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "Miner",
-              "operator": "=",
-              "value": "PAC"
-            }
-          ]
-        }
-      ],
-      "title": "PAC Algo",
-      "type": "stat"
-    },
-    {
-      "datasource": "MoneroMetrics",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [],
-          "noValue": "OFF",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 12,
-        "y": 5
-      },
-      "id": 12,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^xmrigs\\.algo$/",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [],
@@ -713,6 +719,84 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "OFF",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Hs"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 12,
+        "y": 5
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^MinerMetrics\\.Algo$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.0.6",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "MinerMetrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"xmrigs\" WHERE (\"rig\" = 'PAC') AND $timeFilter",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "*"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Miner",
+              "operator": "=",
+              "value": "JID"
+            }
+          ]
+        }
+      ],
+      "title": "JID Algo",
+      "type": "stat"
+    },
+    {
+      "datasource": "MoneroMetrics",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "mode": "palette-classic"
           },
           "custom": {
@@ -725,7 +809,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 1,
@@ -734,7 +819,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "min": 0,
@@ -769,7 +861,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "single"
         }
       },
@@ -833,7 +925,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 1,
@@ -842,11 +935,16 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
-          "max": 150000000,
-          "min": 40000000,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -878,7 +976,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "single"
         }
       },
@@ -932,7 +1030,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -969,7 +1066,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -1002,7 +1099,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -1029,7 +1126,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 1,
@@ -1038,7 +1136,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -1072,7 +1177,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "single"
         }
       },
@@ -1109,7 +1214,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -1126,7 +1231,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1163,7 +1267,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -1196,7 +1300,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -1213,7 +1317,6 @@
           "color": {
             "mode": "continuous-RdYlGr"
           },
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "max": 0.01,
@@ -1257,7 +1360,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -1290,7 +1393,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -1307,7 +1410,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "decimals": 4,
           "mappings": [],
           "thresholds": {
@@ -1349,7 +1451,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.5",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -1393,8 +1495,8 @@
       "type": "stat"
     }
   ],
-  "refresh": "5s",
-  "schemaVersion": 27,
+  "refresh": "30s",
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1408,5 +1510,5 @@
   "timezone": "",
   "title": "Farm Stats",
   "uid": "T_B2vXsGk",
-  "version": 35
+  "version": 45
 }

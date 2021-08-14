@@ -2355,7 +2355,7 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
+            "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -2399,7 +2399,7 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
         "tooltip": {
@@ -2473,7 +2473,7 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
+            "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -2517,7 +2517,7 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
         "tooltip": {
@@ -2699,12 +2699,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-90d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Miner Stats",
   "uid": "KGyeFBsGk",
-  "version": 16
+  "version": 17
 }

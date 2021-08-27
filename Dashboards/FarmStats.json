@@ -8,6 +8,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -61,7 +67,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -154,7 +160,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [],
@@ -243,7 +249,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [],
@@ -324,7 +330,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -417,7 +423,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -469,6 +475,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 1,
           "mappings": [],
           "noValue": "OFF",
           "thresholds": {
@@ -506,7 +513,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -548,7 +555,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Wallet Balance",
+      "title": "Total Balance",
       "type": "stat"
     },
     {
@@ -565,6 +572,115 @@
               {
                 "color": "green",
                 "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              },
+              {
+                "color": "yellow",
+                "value": 2
+              },
+              {
+                "color": "green",
+                "value": 3
+              }
+            ]
+          },
+          "unit": "/3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 16,
+        "y": 4
+      },
+      "id": 30,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^PoolMetrics\\.last_AliveMiners$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.1.2",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "PoolMetrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "queryType": "randomWalk",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "*"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Pool",
+              "operator": "=",
+              "value": "MoneroOcean"
+            }
+          ]
+        }
+      ],
+      "title": "Active Miners",
+      "type": "stat"
+    },
+    {
+      "datasource": "MoneroMetrics",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -574,8 +690,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
-        "x": 16,
+        "w": 5,
+        "x": 19,
         "y": 4
       },
       "id": 9,
@@ -594,7 +710,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -680,7 +796,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [],
@@ -758,7 +874,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [],
@@ -898,7 +1014,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -1013,7 +1129,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -1066,7 +1182,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -1267,7 +1383,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -1360,7 +1476,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -1410,7 +1526,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 4,
+          "decimals": 3,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1451,7 +1567,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.1.2",
       "targets": [
         {
           "groupBy": [
@@ -1503,12 +1619,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Farm Stats",
   "uid": "T_B2vXsGk",
-  "version": 45
+  "version": 61
 }

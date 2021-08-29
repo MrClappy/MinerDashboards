@@ -6,6 +6,10 @@ Detailed instructions are documented in the [Work Log](../main/WORKLOG.md)
 
 ![Imgur Image](https://i.imgur.com/5v7XJJ9.png)
 
+![Imgur Image](https://i.imgur.com/okcpYz5.png)
+
+![Imgur Image](https://i.imgur.com/Ze4xAjb.png)
+
 ## Donations
 
 If you find this information helpful, donations are greatly appreciated!

@@ -4,7 +4,7 @@ This repository contains bash scripts that scrape metrics from XMRig miners, XMR
 
 Detailed instructions are documented in the [Work Log](../main/WORKLOG.md)
 
-![Imgur Image](https://i.imgur.com/GkogeNo.jpg)
+![Imgur Image](https://i.imgur.com/5v7XJJ9.png)
 
 ## Donations
 

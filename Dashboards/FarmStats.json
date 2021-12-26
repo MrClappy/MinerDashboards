@@ -19,13 +19,17 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 2,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -67,7 +71,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -111,7 +115,10 @@
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -149,6 +156,7 @@
       },
       "id": 4,
       "options": {
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -160,7 +168,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [],
@@ -193,13 +201,14 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "BIG Temp",
       "type": "gauge"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -238,6 +247,7 @@
       },
       "id": 5,
       "options": {
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -249,7 +259,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [],
@@ -263,7 +273,7 @@
             [
               {
                 "params": [
-                  "temperature"
+                  "3070ti_Temp"
                 ],
                 "type": "field"
               },
@@ -282,13 +292,14 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "JID Temp",
       "type": "gauge"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -330,7 +341,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -370,18 +381,20 @@
           "tags": []
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Farm Power",
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "noValue": "OFF",
           "thresholds": {
@@ -423,7 +436,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -463,13 +476,14 @@
           "tags": []
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Wallet Balance",
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -513,7 +527,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -553,13 +567,14 @@
           "tags": []
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Total Balance",
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -617,7 +632,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -667,7 +682,10 @@
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -710,7 +728,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -754,7 +772,10 @@
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -796,7 +817,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [],
@@ -831,14 +852,17 @@
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "mappings": [],
-          "noValue": "OFF",
+          "noValue": "kawpow",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -874,7 +898,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [],
@@ -909,7 +933,10 @@
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1025,7 +1052,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1140,7 +1170,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1182,7 +1215,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -1226,7 +1259,10 @@
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1341,7 +1377,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1383,7 +1422,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -1427,7 +1466,10 @@
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1476,7 +1518,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -1520,7 +1562,10 @@
       "type": "stat"
     },
     {
-      "datasource": "MoneroMetrics",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "4ud9jXUGk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1567,7 +1612,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
@@ -1612,7 +1657,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 30,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1626,5 +1671,6 @@
   "timezone": "",
   "title": "Farm Stats",
   "uid": "T_B2vXsGk",
-  "version": 61
+  "version": 66,
+  "weekStart": ""
 }
